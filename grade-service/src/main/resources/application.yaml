@@ -1,0 +1,43 @@
+# server配置
+server:
+  port: 8085
+  servlet:
+    context-path: /
+
+# 连接池配置
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/grade
+      username: root
+      password: Aa13657998660
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    openfeign:
+      httpclient:
+        enabled: true
+        # max-connections: 200    # 最大的连接数
+        # max-connections-per-route: 50    # 每个路径的最大连接数
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+# mybatis-plus的配置
+mybatis-plus:
+  type-aliases-package: com.nchu.qhl.pojo
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted  #全局逻辑删除
+      id-type: auto #主键策略自增长
+
+#pageHelper配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
